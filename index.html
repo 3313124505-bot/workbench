@@ -12,11 +12,30 @@
 <link rel="icon" type="image/png" href="icon-192.png">
 <title>个人工作台</title>
 <style>
-  :root{--bg-grad-1:#ffd9c2;--bg-grad-2:#c9b6ff;--bg-grad-3:#9fd4ff;--panel:rgba(255,255,255,.92);--border:rgba(255,255,255,.65);--text:#2b2440;--muted:#7a7186;--accent:#ff7a45;--accent-2:#a06bff;--accent-3:#3aa0ff;--shadow:0 12px 40px rgba(80,40,120,.18);--radius:18px;--radius-sm:12px}
+  :root{
+    --bg-grad-1:#ffd9c2;--bg-grad-2:#c9b6ff;--bg-grad-3:#9fd4ff;
+    --panel:rgba(255,255,255,.92);--border:rgba(255,255,255,.65);
+    --text:#2b2440;--muted:#7a7186;
+    --accent:#ff7a45;--accent-2:#a06bff;--accent-3:#3aa0ff;
+    --shadow:0 12px 40px rgba(80,40,120,.18);
+    --radius:18px;--radius-sm:12px;
+  }
   *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
   html,body{height:100%;margin:0}
-  body{font-family:"PingFang SC","Microsoft YaHei",system-ui,sans-serif;color:var(--text);background:linear-gradient(135deg,var(--bg-grad-1) 0%,var(--bg-grad-2) 55%,var(--bg-grad-3) 100%);background-attachment:fixed;display:flex;justify-content:center;align-items:center;min-height:100vh;padding:8px}
-  .phone{width:100%;max-width:430px;height:96vh;min-height:680px;background:var(--panel);border:1px solid var(--border);border-radius:36px;box-shadow:var(--shadow),0 0 0 10px rgba(255,255,255,.4);overflow:hidden;position:relative;display:flex;flex-direction:column}
+  body{
+    font-family:"PingFang SC","Microsoft YaHei",system-ui,sans-serif;
+    color:var(--text);
+    background:linear-gradient(135deg,var(--bg-grad-1) 0%,var(--bg-grad-2) 55%,var(--bg-grad-3) 100%);
+    background-attachment:fixed;
+    display:flex;justify-content:center;align-items:center;
+    min-height:100vh;padding:8px;
+  }
+  .phone{
+    width:100%;max-width:430px;height:96vh;min-height:680px;
+    background:var(--panel);border:1px solid var(--border);border-radius:36px;
+    box-shadow:var(--shadow),0 0 0 10px rgba(255,255,255,.4);
+    overflow:hidden;position:relative;display:flex;flex-direction:column;
+  }
   .status-bar{display:flex;justify-content:space-between;align-items:center;padding:8px 22px 4px;font-size:13px;font-weight:600;background:rgba(255,255,255,.5)}
   .status-bar .right{display:flex;gap:5px;align-items:center;font-size:11px}
   .app-header{padding:10px 18px 8px;display:flex;align-items:center;gap:10px;border-bottom:1px solid var(--border)}
@@ -61,6 +80,7 @@
   .li-btn.ximalaya{color:#a02020;border-color:rgba(160,32,32,.3)}
   .li-btn.snail{color:#d48806;border-color:rgba(212,136,6,.3)}
   .li-btn.video{color:var(--accent);border-color:rgba(255,122,69,.35)}
+  .li-btn.duokan{color:#e1251b;border-color:rgba(225,37,27,.3)}
   .li-btn:hover{transform:translateY(-1px);box-shadow:0 3px 8px rgba(120,80,160,.15)}
   .calendar-wrap{background:linear-gradient(135deg,rgba(255,213,79,.18),rgba(160,107,255,.15));border:1px solid var(--border);border-radius:var(--radius-sm);padding:14px;margin-bottom:12px}
   .calendar-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px}
@@ -101,10 +121,17 @@
   .tb .ic{font-size:18px}
   .tb.active{color:var(--accent)}
   .tb.center .ic{width:42px;height:30px;border-radius:9px;background:linear-gradient(135deg,#ff7a45,#ff9a6b);color:#fff;display:grid;place-items:center;font-size:22px;box-shadow:0 4px 12px rgba(255,122,69,.4)}
+  /* 动作内嵌视频 */
   .move-video{margin-top:10px;border-radius:10px;overflow:hidden;border:1px solid var(--border);background:#000}
   .move-video iframe{width:100%;height:200px;border:none;display:block}
+  .move-video .placeholder{
+    width:100%;height:200px;display:flex;flex-direction:column;align-items:center;justify-content:center;
+    background:linear-gradient(135deg,#2b2440,#5a4a7a);color:#fff;gap:8px;font-size:12px;
+  }
+  .move-video .placeholder .play{font-size:30px;opacity:.85}
   .move-video .video-actions{padding:8px;background:rgba(255,255,255,.85);display:flex;gap:6px;flex-wrap:wrap}
   .move-tip{font-size:10px;color:var(--muted);margin-top:6px;line-height:1.5}
+  /* 拿货步骤 */
   .step-box{background:rgba(58,160,255,.08);border-left:3px solid var(--accent-3);padding:8px 10px;border-radius:0 8px 8px 0;margin-top:8px}
   .step-box .sb-title{font-size:11px;font-weight:700;color:var(--accent-3);margin-bottom:4px}
   .step-box .sb-step{font-size:11px;color:#4a4360;line-height:1.6;padding-left:14px;position:relative}
@@ -115,6 +142,7 @@
   .rec-box{background:rgba(255,122,69,.1);border-left:3px solid var(--accent);padding:8px 10px;border-radius:0 8px 8px 0;margin-top:6px}
   .rec-box .rb-title{font-size:11px;font-weight:700;color:var(--accent);margin-bottom:3px}
   .rec-box .rb-text{font-size:11px;color:#4a4360;line-height:1.5}
+  /* 书籍 */
   .book-card{display:flex;gap:10px;padding:12px;background:rgba(255,255,255,.82);border-radius:11px;border:1px solid var(--border);margin-bottom:8px}
   .book-cover{width:54px;height:74px;border-radius:6px;flex-shrink:0;display:grid;place-items:center;color:#fff;font-size:10px;text-align:center;line-height:1.2;padding:4px;font-weight:700;box-shadow:0 3px 8px rgba(0,0,0,.15)}
   .book-info{flex:1;min-width:0}
@@ -130,8 +158,17 @@
 </head>
 <body>
 <div class="phone">
-  <div class="status-bar"><span id="clock">10:17</span><div class="right"><span>5G</span><span>📶</span><span>▰▰▰▰</span><span>93%</span></div></div>
-  <div class="app-header"><div class="logo">工</div><div><div class="title">个人工作台</div><div class="sub">AI Workbench · v3.0</div></div><div class="spacer"></div><div class="icon-btn" onclick="toast('设置')">⚙️</div><div class="icon-btn" onclick="toast('个人中心')">👤</div></div>
+  <div class="status-bar">
+    <span id="clock">10:17</span>
+    <div class="right"><span>5G</span><span>📶</span><span>▰▰▰▰</span><span>93%</span></div>
+  </div>
+  <div class="app-header">
+    <div class="logo">工</div>
+    <div><div class="title">个人工作台</div><div class="sub">AI Workbench · v3.0</div></div>
+    <div class="spacer"></div>
+    <div class="icon-btn" onclick="toast('设置')">⚙️</div>
+    <div class="icon-btn" onclick="toast('个人中心')">👤</div>
+  </div>
   <div class="tab-scroll" id="tabScroll">
     <div class="tab active" data-panel="inspiration">💡每日灵感</div>
     <div class="tab" data-panel="english">🗣英语口语</div>
@@ -145,7 +182,835 @@
     <div class="tab" data-panel="mind">🧘修心修行</div>
     <div class="tab" data-panel="blog">✍️博客精选</div>
   </div>
-  <div class="content" id="content"></div>
+  <div class="content" id="content">
+
+    <!-- 每日灵感 -->
+    <section class="panel active" id="panel-inspiration">
+      <div class="card">
+        <div class="card-title">✍️ 写下此刻的想法</div>
+        <textarea class="input-box" id="ideaInput" placeholder="今天看到一个有趣的现象... 想到一个产品点子..."></textarea>
+        <div class="input-row">
+          <button class="btn btn-primary" onclick="saveIdea()">发布</button>
+          <button class="btn btn-ghost">草稿</button>
+          <span class="char-count"><span id="charCount">0</span>/280</span>
+        </div>
+      </div>
+
+      <div class="block-title">🎵 抖音 · 小众兴趣圈</div>
+      <div class="card">
+        <div class="card-head"><div class="card-title">📓 手帐研究室</div><span class="tag">手帐</span></div>
+        <div class="li-desc">@手帐研究室 · 把生活做成一本杂志 · 点赞 2.4w · 治愈系排版</div>
+        <div class="li-actions">
+          <a class="li-btn douyin" href="https://www.douyin.com/search/%E6%89%8B%E5%B8%90%E7%A0%94%E7%A9%B6%E5%AE%A4" target="_blank">📲 在抖音查看</a>
+          <a class="li-btn bilibili" href="https://search.bilibili.com/all?keyword=%E6%89%8B%E5%B8%90%E6%96%87%E5%85%B7" target="_blank">📺 在B站搜</a>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-head"><div class="card-title">🎵 老唱片修复师</div><span class="tag">黑胶</span></div>
+        <div class="li-desc">@老唱片修复师 · 黑胶保养冷知识 · 点赞 8.7k · 工艺科普</div>
+        <div class="li-actions">
+          <a class="li-btn douyin" href="https://www.douyin.com/search/%E9%BB%91%E8%83%B6%E5%94%B1%E7%89%87%E4%BF%AE%E5%A4%8D" target="_blank">📲 在抖音查看</a>
+          <a class="li-btn bilibili" href="https://search.bilibili.com/all?keyword=%E9%BB%91%E8%83%B6%E5%94%B1%E7%89%87%E4%BF%AE%E5%A4%8D" target="_blank">📺 在B站搜</a>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-head"><div class="card-title">🐦 城市观鸟</div><span class="tag">自然</span></div>
+        <div class="li-desc">@城市观鸟 · 上海常见鸟图鉴 · 点赞 5.1k · 户外记录</div>
+        <div class="li-actions">
+          <a class="li-btn douyin" href="https://www.douyin.com/search/%E5%9F%8E%E5%B8%82%E8%A7%82%E9%B8%9F" target="_blank">📲 在抖音查看</a>
+          <a class="li-btn bilibili" href="https://search.bilibili.com/all?keyword=%E5%9F%8E%E5%B8%82%E8%A7%82%E9%B8%9F" target="_blank">📺 在B站搜</a>
+        </div>
+      </div>
+
+      <div class="block-title">📺 B站 · 小众兴趣圈</div>
+      <div class="card">
+        <div class="card-head"><div class="card-title">⌨️ 机械键盘档案馆</div><span class="tag blue">键圈</span></div>
+        <div class="li-desc">UP:机械键盘档案馆 · 60%配列小众轴体横评 · 投币 1.2w</div>
+        <div class="move-video">
+          <iframe src="https://player.bilibili.com/player.html?bvid=BV1GJ411x7X3&page=1&autoplay=0&high_quality=1" allowfullscreen scrolling="no"></iframe>
+          <div class="video-actions">
+            <a class="li-btn bilibili" href="https://search.bilibili.com/all?keyword=%E6%9C%BA%E6%A2%B0%E9%94%AE%E7%9B%98%E5%B0%8F%E4%BC%97%E8%BD%B4%E4%BD%93" target="_blank">📺 B站搜索</a>
+            <a class="li-btn douyin" href="https://www.douyin.com/search/%E6%9C%BA%E6%A2%B0%E9%94%AE%E7%9B%98" target="_blank">📲 抖音搜</a>
+          </div>
+        </div>
+        <div class="move-tip">视频若未加载,B站部分视频限制嵌入,可点上方按钮直达观看。</div>
+      </div>
+      <div class="card">
+        <div class="card-head"><div class="card-title">🌿 慢生活实验室</div><span class="tag blue">极简</span></div>
+        <div class="li-desc">UP:慢生活实验室 · 一周只用电饭锅做菜 · 投币 8.6k</div>
+        <div class="move-video">
+          <iframe src="https://player.bilibili.com/player.html?bvid=BV1GJ411x7X3&page=1&autoplay=0&high_quality=1" allowfullscreen scrolling="no"></iframe>
+          <div class="video-actions">
+            <a class="li-btn bilibili" href="https://search.bilibili.com/all?keyword=%E6%85%A2%E7%94%9F%E6%B4%BB%E5%AE%9E%E9%AA%8C%E5%AE%A4" target="_blank">📺 B站搜索</a>
+            <a class="li-btn douyin" href="https://www.douyin.com/search/%E6%9E%81%E7%AE%80%E7%94%9F%E6%B4%BB" target="_blank">📲 抖音搜</a>
+          </div>
+        </div>
+        <div class="move-tip">视频若未加载,可点上方按钮直达观看。</div>
+      </div>
+      <div class="card">
+        <div class="card-head"><div class="card-title">🎞️ 老式胶片冲洗</div><span class="tag blue">胶片</span></div>
+        <div class="li-desc">UP:老式胶片冲洗 · 自己在家洗黑白胶卷 · 投币 4.9k</div>
+        <div class="move-video">
+          <iframe src="https://player.bilibili.com/player.html?bvid=BV1GJ411x7X3&page=1&autoplay=0&high_quality=1" allowfullscreen scrolling="no"></iframe>
+          <div class="video-actions">
+            <a class="li-btn bilibili" href="https://search.bilibili.com/all?keyword=%E8%83%B6%E7%89%87%E5%86%B2%E6%B4%97" target="_blank">📺 B站搜索</a>
+            <a class="li-btn douyin" href="https://www.douyin.com/search/%E8%83%B6%E7%89%87%E6%91%84%E5%BD%B1" target="_blank">📲 抖音搜</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="block-title">🗂 我的想法墙</div>
+      <div class="card">
+        <div id="ideaWall">
+          <div class="list-item"><div class="li-num">1</div><div class="li-body"><div class="li-title">把"小众兴趣地图"做成订阅制周刊</div><div class="li-desc">来源:抖音冷门圈层账号流量稳定 · 09-28 22:14</div></div></div>
+          <div class="list-item"><div class="li-num">2</div><div class="li-body"><div class="li-title">哑铃训练配速音频,沉浸感更强</div><div class="li-desc">来源:健身时听 podcast · 09-27 07:30</div></div></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 英语口语 -->
+    <section class="panel" id="panel-english">
+      <div class="card">
+        <div class="card-title">📖 Today's Sentence</div>
+        <p style="font-size:15px;font-style:italic;margin:8px 0">"The only way to do great work is to love what you do."</p>
+        <p style="color:var(--muted);font-size:12px;margin:0">做出伟大工作的唯一方法,就是热爱你所做的事。 —— Steve Jobs</p>
+        <div class="li-actions" style="margin-top:10px">
+          <a class="li-btn video" href="https://search.bilibili.com/all?keyword=Steve%20Jobs%20Stanford" target="_blank">🎬 原版演讲</a>
+          <a class="li-btn bilibili" href="https://search.bilibili.com/all?keyword=%E8%8B%B1%E8%AF%AD%E5%8F%A3%E8%AF%AD%E8%B7%9F%E8%AF%BB" target="_blank">📺 跟读教程</a>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-title">🎯 本周场景:咖啡馆点单</div>
+        <div class="li-desc">"Could I get a flat white with oat milk, for here please?"</div>
+        <div class="li-desc" style="margin-top:6px">我可以要一杯燕麦奶馥芮白,堂食,谢谢。</div>
+        <div class="li-actions" style="margin-top:10px">
+          <a class="li-btn video" href="https://search.bilibili.com/all?keyword=%E5%92%96%E5%95%A1%E9%A6%86%E7%82%B9%E5%8D%95%20%E8%8B%B1%E8%AF%AD" target="_blank">🎬 对话情景</a>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-title">📊 本周学习进度</div>
+        <div style="font-size:12px;margin:6px 0">跟读完成 5/7 天</div>
+        <div class="progress"><i style="width:71%"></i></div>
+        <div style="font-size:12px;margin:10px 0 6px">发音准确度 86%</div>
+        <div class="progress"><i style="width:86%"></i></div>
+      </div>
+    </section>
+
+    <!-- 减脂饮食 -->
+    <section class="panel" id="panel-diet">
+      <div class="card">
+        <div class="card-title">🔥 今日热量预算</div>
+        <div style="display:flex;gap:18px;align-items:center;margin-top:8px">
+          <div><div style="font-size:20px;font-weight:700;color:var(--accent)">1,650</div><div class="li-desc">目标 kcal</div></div>
+          <div><div style="font-size:20px;font-weight:700">1,180</div><div class="li-desc">已摄入</div></div>
+          <div><div style="font-size:20px;font-weight:700;color:#69db7c">-470</div><div class="li-desc">缺口</div></div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-title">🌅 早餐 · 320 kcal</div>
+        <div class="li-desc">水煮蛋×2 · 全麦面包 1 片 · 黑咖 · 蛋白 22g</div>
+        <div class="move-video">
+          <iframe src="https://player.bilibili.com/player.html?bvid=BV1GJ411x7X3&page=1&autoplay=0" allowfullscreen scrolling="no"></iframe>
+          <div class="video-actions">
+            <a class="li-btn bilibili" href="https://search.bilibili.com/all?keyword=%E5%87%8F%E8%84%82%E6%97%A9%E9%A4%90" target="_blank">📺 B站搜做法</a>
+          </div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-title">☀️ 午餐 · 520 kcal</div>
+        <div class="li-desc">鸡胸肉 150g · 糙米饭 100g · 西兰花 · 蛋白 38g</div>
+        <div class="move-video">
+          <iframe src="https://player.bilibili.com/player.html?bvid=BV1GJ411x7X3&page=1&autoplay=0" allowfullscreen scrolling="no"></iframe>
+          <div class="video-actions">
+            <a class="li-btn bilibili" href="https://search.bilibili.com/all?keyword=%E9%B8%A1%E8%83%B8%E8%82%89%20%E5%87%8F%E8%84%82" target="_blank">📺 鸡胸肉做法</a>
+          </div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-title">🌙 晚餐 · 340 kcal</div>
+        <div class="li-desc">三文鱼 120g · 藜麦沙拉 · 牛油果 · 蛋白 28g</div>
+        <div class="move-video">
+          <iframe src="https://player.bilibili.com/player.html?bvid=BV1GJ411x7X3&page=1&autoplay=0" allowfullscreen scrolling="no"></iframe>
+          <div class="video-actions">
+            <a class="li-btn bilibili" href="https://search.bilibili.com/all?keyword=%E4%B8%89%E6%96%87%E9%B1%BC%20%E5%87%8F%E8%84%82" target="_blank">📺 三文鱼做法</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 每日塑形(三分化+有氧,内嵌视频) -->
+    <section class="panel" id="panel-shape">
+      <div class="calendar-wrap">
+        <div class="calendar-head"><h3>📅 本月打卡 · 三分化+有氧</h3><span class="tag orange">连续 12 天</span></div>
+        <div class="cal-week"><div>一</div><div>二</div><div>三</div><div>四</div><div>五</div><div>六</div><div>日</div></div>
+        <div class="calendar-grid" id="calGrid"></div>
+        <button class="checkin-btn" id="checkinBtn" onclick="checkin()">+ 今日打卡 (腿日)</button>
+      </div>
+
+      <div class="block-title">🦵 今日 · 腿日哑铃计划(动作下方有视频参考)</div>
+
+      <div class="card">
+        <div class="card-head"><div class="card-title">🏋️ 哑铃高脚杯深蹲</div><span class="tag orange">主项</span></div>
+        <div class="li-desc">4 组 × 10 次 · 重量 22kg · 休息 90s</div>
+        <div class="li-desc" style="color:#4a4360;margin-top:4px">要点:双手捧哑铃于胸前,核心绷紧,下蹲至大腿平行地面,膝盖不内扣。</div>
+        <div class="move-video">
+          <iframe src="https://player.bilibili.com/player.html?bvid=BV1GJ411x7X3&page=1&autoplay=0&high_quality=1" allowfullscreen scrolling="no"></iframe>
+          <div class="video-actions">
+            <a class="li-btn bilibili" href="https://search.bilibili.com/all?keyword=%E5%93%91%E9%93%83%E9%AB%98%E8%84%9A%E6%9D%AF%E6%B7%B1%E8%B9%B2" target="_blank">📺 B站搜此动作</a>
+            <a class="li-btn douyin" href="https://www.douyin.com/search/%E5%93%91%E9%93%83%E9%AB%98%E8%84%9A%E6%9D%AF%E6%B7%B1%E8%B9%B2" target="_blank">📲 抖音搜</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-head"><div class="card-title">🏋️ 哑铃罗马尼亚硬拉</div><span class="tag orange">主项</span></div>
+        <div class="li-desc">4 组 × 12 次 · 重量 18kg · 休息 90s</div>
+        <div class="li-desc" style="color:#4a4360;margin-top:4px">要点:微屈膝,髋部后推,下放至小腿中段,感受腘绳肌拉伸,腰椎不弯。</div>
+        <div class="move-video">
+          <iframe src="https://player.bilibili.com/player.html?bvid=BV1GJ411x7X3&page=1&autoplay=0&high_quality=1" allowfullscreen scrolling="no"></iframe>
+          <div class="video-actions">
+            <a class="li-btn bilibili" href="https://search.bilibili.com/all?keyword=%E5%93%91%E9%93%83%E7%BD%97%E9%A9%AC%E5%B0%BC%E4%BA%9A%E7%A1%AC%E6%8B%89" target="_blank">📺 B站搜此动作</a>
+            <a class="li-btn douyin" href="https://www.douyin.com/search/%E7%BD%97%E9%A9%AC%E5%B0%BC%E4%BA%9A%E7%A1%AC%E6%8B%89" target="_blank">📲 抖音搜</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-head"><div class="card-title">🏋️ 哑铃箭步蹲</div><span class="tag orange">主项</span></div>
+        <div class="li-desc">3 组 × 12 次/侧 · 重量 12kg · 休息 60s</div>
+        <div class="li-desc" style="color:#4a4360;margin-top:4px">要点:前脚迈一大步,后膝接近地面,前膝不超过脚尖,重心垂直下降。</div>
+        <div class="move-video">
+          <iframe src="https://player.bilibili.com/player.html?bvid=BV1GJ411x7X3&page=1&autoplay=0&high_quality=1" allowfullscreen scrolling="no"></iframe>
+          <div class="video-actions">
+            <a class="li-btn bilibili" href="https://search.bilibili.com/all?keyword=%E5%93%91%E9%93%83%E7%AE%AD%E6%AD%A5%E8%B9%B2" target="_blank">📺 B站搜此动作</a>
+            <a class="li-btn douyin" href="https://www.douyin.com/search/%E7%AE%AD%E6%AD%A5%E8%B9%B2" target="_blank">📲 抖音搜</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-head"><div class="card-title">🎯 哑铃臀桥</div><span class="tag blue">辅助</span></div>
+        <div class="li-desc">3 组 × 15 次 · 重量 20kg · 顶峰收缩 2s</div>
+        <div class="li-desc" style="color:#4a4360;margin-top:4px">要点:仰卧,哑铃置髋骨,顶髋至身体成直线,夹紧臀部。</div>
+        <div class="move-video">
+          <iframe src="https://player.bilibili.com/player.html?bvid=BV1GJ411x7X3&page=1&autoplay=0&high_quality=1" allowfullscreen scrolling="no"></iframe>
+          <div class="video-actions">
+            <a class="li-btn bilibili" href="https://search.bilibili.com/all?keyword=%E5%93%91%E9%93%83%E8%87%80%E6%A1%A5" target="_blank">📺 B站搜此动作</a>
+            <a class="li-btn douyin" href="https://www.douyin.com/search/%E5%93%91%E9%93%83%E8%87%80%E6%A1%A5" target="_blank">📲 抖音搜</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-head"><div class="card-title">🎯 哑铃站姿提踵</div><span class="tag blue">辅助</span></div>
+        <div class="li-desc">4 组 × 20 次 · 重量 15kg · 慢下快上</div>
+        <div class="li-desc" style="color:#4a4360;margin-top:4px">要点:持铃自然下垂,踮脚至最高点停 1s,缓慢下放 2s。</div>
+        <div class="move-video">
+          <iframe src="https://player.bilibili.com/player.html?bvid=BV1GJ411x7X3&page=1&autoplay=0&high_quality=1" allowfullscreen scrolling="no"></iframe>
+          <div class="video-actions">
+            <a class="li-btn bilibili" href="https://search.bilibili.com/all?keyword=%E5%93%91%E9%93%83%E6%8F%90%E8%B8%B5" target="_blank">📺 B站搜此动作</a>
+            <a class="li-btn douyin" href="https://www.douyin.com/search/%E5%93%91%E9%93%83%E6%8F%90%E8%B8%B5" target="_blank">📲 抖音搜</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-head"><div class="card-title">🎯 平板支撑(收尾)</div><span class="tag blue">核心</span></div>
+        <div class="li-desc">3 组 × 45 秒 · 休息 45s</div>
+        <div class="li-desc" style="color:#4a4360;margin-top:4px">要点:头-肩-髋-踝成直线,核心绷紧,不塌腰不撅屁股。</div>
+        <div class="move-video">
+          <iframe src="https://player.bilibili.com/player.html?bvid=BV1GJ411x7X3&page=1&autoplay=0&high_quality=1" allowfullscreen scrolling="no"></iframe>
+          <div class="video-actions">
+            <a class="li-btn bilibili" href="https://search.bilibili.com/all?keyword=%E5%B9%B3%E6%9D%BF%E6%94%AF%E6%92%91%20%E6%A0%87%E5%87%86" target="_blank">📺 B站搜此动作</a>
+            <a class="li-btn douyin" href="https://www.douyin.com/search/%E5%B9%B3%E6%9D%BF%E6%94%AF%E6%92%91" target="_blank">📲 抖音搜</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="block-title">🏃 有氧运动(每周 3 次,任选其一)</div>
+
+      <div class="card">
+        <div class="card-head"><div class="card-title">🏃 慢跑</div><span class="tag green">燃脂</span></div>
+        <div class="li-desc">30-40 分钟 · 心率 130-150 · 配速 6:30/km</div>
+        <div class="li-desc" style="color:#4a4360;margin-top:4px">要点:前脚掌过渡到全脚,步频 180/分,呼吸 3 步一吸 2 步一呼。</div>
+        <div class="move-video">
+          <iframe src="https://player.bilibili.com/player.html?bvid=BV1GJ411x7X3&page=1&autoplay=0&high_quality=1" allowfullscreen scrolling="no"></iframe>
+          <div class="video-actions">
+            <a class="li-btn bilibili" href="https://search.bilibili.com/all?keyword=%E6%85%A2%E8%B7%91%20%E6%AD%A3%E7%A1%AE%E5%A7%BF%E5%8A%BF" target="_blank">📺 跑步姿势教学</a>
+            <a class="li-btn douyin" href="https://www.douyin.com/search/%E6%85%A2%E8%B7%91%20%E6%95%99%E5%AD%A6" target="_blank">📲 抖音搜</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-head"><div class="card-title">🪢 跳绳</div><span class="tag green">高效</span></div>
+        <div class="li-desc">15 分钟 HIIT 节奏:30s 快 + 30s 慢 × 15 组</div>
+        <div class="li-desc" style="color:#4a4360;margin-top:4px">要点:前脚掌着地,膝盖微屈,手腕画小圈,绳子刚过脚尖。</div>
+        <div class="move-video">
+          <iframe src="https://player.bilibili.com/player.html?bvid=BV1GJ411x7X3&page=1&autoplay=0&high_quality=1" allowfullscreen scrolling="no"></iframe>
+          <div class="video-actions">
+            <a class="li-btn bilibili" href="https://search.bilibili.com/all?keyword=%E8%B7%B3%E7%BB%B3%20%E6%95%99%E5%AD%A6" target="_blank">📺 跳绳教学</a>
+            <a class="li-btn douyin" href="https://www.douyin.com/search/%E8%B7%B3%E7%BB%B3" target="_blank">📲 抖音搜</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-head"><div class="card-title">🔥 HIIT 高强度间歇</div><span class="tag red">高效</span></div>
+        <div class="li-desc">20 分钟 · 20s 全力 + 40s 休息 × 20 组</div>
+        <div class="li-desc" style="color:#4a4360;margin-top:4px">动作:开合跳 / 波比跳 / 高抬腿 / 登山者 / 深蹲跳,每动作 4 组循环。</div>
+        <div class="move-video">
+          <iframe src="https://player.bilibili.com/player.html?bvid=BV1GJ411x7X3&page=1&autoplay=0&high_quality=1" allowfullscreen scrolling="no"></iframe>
+          <div class="video-actions">
+            <a class="li-btn bilibili" href="https://search.bilibili.com/all?keyword=HIIT%20%E5%B1%85%E5%AE%B6%20%E5%87%8F%E8%84%82" target="_blank">📺 HIIT 跟练</a>
+            <a class="li-btn douyin" href="https://www.douyin.com/search/HIIT%20%E8%B7%9F%E7%BB%83" target="_blank">📲 抖音搜</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-head"><div class="card-title">🚴 动感单车</div><span class="tag green">低冲击</span></div>
+        <div class="li-desc">30 分钟 · 阻力 6-8 · 心率 140 左右</div>
+        <div class="li-desc" style="color:#4a4360;margin-top:4px">要点:坐姿站姿交替,阻力别太小伤膝盖,结束后拉伸股四头肌。</div>
+        <div class="move-video">
+          <iframe src="https://player.bilibili.com/player.html?bvid=BV1GJ411x7X3&page=1&autoplay=0&high_quality=1" allowfullscreen scrolling="no"></iframe>
+          <div class="video-actions">
+            <a class="li-btn bilibili" href="https://search.bilibili.com/all?keyword=%E5%8A%A8%E6%84%9F%E5%8D%95%E8%BD%A6%20%E8%B7%9F%E7%BB%83" target="_blank">📺 单车跟练</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-title">📈 三分化+有氧 周计划</div>
+        <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:6px;margin-top:8px;font-size:11px">
+          <div style="padding:8px;background:rgba(255,122,69,.1);border-radius:8px"><b>周一</b> · 推日 + 30min 慢跑</div>
+          <div style="padding:8px;background:rgba(160,107,255,.1);border-radius:8px"><b>周二</b> · 拉日</div>
+          <div style="padding:8px;background:rgba(58,160,255,.1);border-radius:8px"><b>周三</b> · 腿日 + 跳绳 HIIT</div>
+          <div style="padding:8px;background:rgba(255,122,69,.1);border-radius:8px"><b>周四</b> · 推日</div>
+          <div style="padding:8px;background:rgba(160,107,255,.1);border-radius:8px"><b>周五</b> · 拉日 + 30min 单车</div>
+          <div style="padding:8px;background:rgba(58,160,255,.1);border-radius:8px"><b>周六</b> · 腿日 + HIIT</div>
+        </div>
+        <div style="margin-top:8px;padding:8px;background:rgba(140,233,154,.15);border-radius:8px;font-size:11px"><b>周日</b> · 主动休息 · 散步/拉伸/泡澡</div>
+      </div>
+    </section>
+
+    <!-- 热点新闻 -->
+    <section class="panel" id="panel-news">
+      <a class="card hoverable" href="https://www.36kr.com/" target="_blank" style="display:block;text-decoration:none;color:inherit">
+        <div class="card-head"><div class="card-title">📰 国产大模型新一轮价格战</div><span class="tag red">热</span></div>
+        <div class="li-desc">API 调用费再降 60% · 36氪 · 2 小时前 · 1.2w 评论</div>
+        <div class="li-desc" style="color:var(--accent);margin-top:4px">▶ 点击阅读全文</div>
+      </a>
+      <a class="card hoverable" href="https://www.yicai.com/" target="_blank" style="display:block;text-decoration:none;color:inherit">
+        <div class="card-head"><div class="card-title">📰 新能源车出口同比 +38%</div><span class="tag orange">荐</span></div>
+        <div class="li-desc">欧洲成主战场 · 第一财经 · 4 小时前</div>
+        <div class="li-desc" style="color:var(--accent);margin-top:4px">▶ 点击阅读全文</div>
+      </a>
+      <a class="card hoverable" href="https://www.huxiu.com/" target="_blank" style="display:block;text-decoration:none;color:inherit">
+        <div class="card-head"><div class="card-title">📰 AI Agent 协议 MCP 进入主流</div><span class="tag">深</span></div>
+        <div class="li-desc">企业级落地加速 · 虎嗅 · 6 小时前</div>
+        <div class="li-desc" style="color:var(--accent);margin-top:4px">▶ 点击阅读全文</div>
+      </a>
+    </section>
+
+    <!-- 书籍推荐(点开直接阅读,删豆瓣/京东) -->
+    <section class="panel" id="panel-books">
+      <div class="card" style="background:rgba(255,213,79,.15);border-color:rgba(255,213,79,.4)">
+        <div class="card-title">📌 阅读渠道说明</div>
+        <div class="li-desc">以下按钮均直接跳转到可<b style="color:#1d6b2a">在线阅读</b>或<b style="color:#a02020">听书</b>的平台:</div>
+        <div class="li-desc" style="margin-top:4px">📖 微信读书(网页可读) · 📚 网易蜗牛读书(免费 1 小时/天) · 🎧 喜马拉雅(有声书)</div>
+      </div>
+
+      <div class="block-title">🧠 主线一 · 社会心理学(从基础入门)</div>
+
+      <div class="book-card">
+        <div class="book-cover" style="background:linear-gradient(135deg,#ff7a45,#a06bff)">心理学<br>与生活</div>
+        <div class="book-info">
+          <div class="t">①《心理学与生活》<span class="tag">入门</span></div>
+          <div class="a">理查德·格里格</div>
+          <div class="d">入门必读,语言通俗,系统覆盖心理学各分支。</div>
+          <div class="progress"><i style="width:22%"></i></div>
+          <div class="book-actions" style="margin-top:6px">
+            <a class="li-btn weixin" href="https://weread.qq.com/web/search/%E5%BF%83%E7%90%86%E5%AD%A6%E4%B8%8E%E7%94%9F%E6%B4%BB" target="_blank">📖 微信读书</a>
+            <a class="li-btn snail" href="https://reading.163.com/search?word=%E5%BF%83%E7%90%86%E5%AD%A6%E4%B8%8E%E7%94%9F%E6%B4%BB" target="_blank">📚 蜗牛读书</a>
+            <a class="li-btn ximalaya" href="https://www.ximalaya.com/search/%E5%BF%83%E7%90%86%E5%AD%A6%E4%B8%8E%E7%94%9F%E6%B4%BB" target="_blank">🎧 喜马拉雅</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="book-card">
+        <div class="book-cover" style="background:linear-gradient(135deg,#a06bff,#3aa0ff)">社会<br>心理学</div>
+        <div class="book-info">
+          <div class="t">②《社会心理学》<span class="tag">基础</span></div>
+          <div class="a">戴维·迈尔斯</div>
+          <div class="d">社心经典教材,案例丰富,读完建立完整框架。</div>
+          <div class="book-actions">
+            <a class="li-btn weixin" href="https://weread.qq.com/web/search/%E7%A4%BE%E4%BC%9A%E5%BF%83%E7%90%86%E5%AD%A6%20%E8%BF%88%E5%B0%94%E6%96%AF" target="_blank">📖 微信读书</a>
+            <a class="li-btn snail" href="https://reading.163.com/search?word=%E7%A4%BE%E4%BC%9A%E5%BF%83%E7%90%86%E5%AD%A6" target="_blank">📚 蜗牛读书</a>
+            <a class="li-btn ximalaya" href="https://www.ximalaya.com/search/%E7%A4%BE%E4%BC%9A%E5%BF%83%E7%90%86%E5%AD%A6" target="_blank">🎧 喜马拉雅</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="book-card">
+        <div class="book-cover" style="background:linear-gradient(135deg,#2b2440,#5a4a7a);color:#ffd54f">乌合<br>之众</div>
+        <div class="book-info">
+          <div class="t">③《乌合之众》<span class="tag">经典</span></div>
+          <div class="a">古斯塔夫·勒庞</div>
+          <div class="d">群体心理学开山之作,薄而锋利,精读案例。</div>
+          <div class="book-actions">
+            <a class="li-btn weixin" href="https://weread.qq.com/web/search/%E4%B9%8C%E5%90%88%E4%B9%8B%E4%BC%97" target="_blank">📖 微信读书</a>
+            <a class="li-btn snail" href="https://reading.163.com/search?word=%E4%B9%8C%E5%90%88%E4%B9%8B%E4%BC%97" target="_blank">📚 蜗牛读书</a>
+            <a class="li-btn ximalaya" href="https://www.ximalaya.com/search/%E4%B9%8C%E5%90%88%E4%B9%8B%E4%BC%97" target="_blank">🎧 喜马拉雅</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="book-card">
+        <div class="book-cover" style="background:linear-gradient(135deg,#69db7c,#3aa0ff)">社会性<br>动物</div>
+        <div class="book-info">
+          <div class="t">④《社会性动物》<span class="tag">进阶</span></div>
+          <div class="a">埃利奥特·阿伦森</div>
+          <div class="d">浓缩社心精华,行文流畅,适合精读。</div>
+          <div class="book-actions">
+            <a class="li-btn weixin" href="https://weread.qq.com/web/search/%E7%A4%BE%E4%BC%9A%E6%80%A7%E5%8A%A8%E7%89%A9%20%E9%98%BF%E4%BC%A6%E6%A3%AE" target="_blank">📖 微信读书</a>
+            <a class="li-btn snail" href="https://reading.163.com/search?word=%E7%A4%BE%E4%BC%9A%E6%80%A7%E5%8A%A8%E7%89%A9" target="_blank">📚 蜗牛读书</a>
+            <a class="li-btn ximalaya" href="https://www.ximalaya.com/search/%E7%A4%BE%E4%BC%9A%E6%80%A7%E5%8A%A8%E7%89%A9" target="_blank">🎧 喜马拉雅</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="book-card">
+        <div class="book-cover" style="background:linear-gradient(135deg,#ff7a45,#ffd54f)">影响<br>力</div>
+        <div class="book-info">
+          <div class="t">⑤《影响力》<span class="tag">应用</span></div>
+          <div class="a">罗伯特·西奥迪尼</div>
+          <div class="d">6 大影响原则,把社心理论落到生活/营销/谈判。</div>
+          <div class="book-actions">
+            <a class="li-btn weixin" href="https://weread.qq.com/web/search/%E5%BD%B1%E5%93%8D%E5%8A%9B%20%E8%A5%BF%E5%A5%A5%E8%BF%AA%E5%B0%BC" target="_blank">📖 微信读书</a>
+            <a class="li-btn snail" href="https://reading.163.com/search?word=%E5%BD%B1%E5%93%8D%E5%8A%9B" target="_blank">📚 蜗牛读书</a>
+            <a class="li-btn ximalaya" href="https://www.ximalaya.com/search/%E5%BD%B1%E5%93%8D%E5%8A%9B" target="_blank">🎧 喜马拉雅</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="book-card">
+        <div class="book-cover" style="background:linear-gradient(135deg,#2b2440,#a06bff)">思考,<br>快与慢</div>
+        <div class="book-info">
+          <div class="t">⑥《思考,快与慢》<span class="tag">高阶</span></div>
+          <div class="a">丹尼尔·卡尼曼</div>
+          <div class="d">双系统理论,认知偏差深挖,建议最后读。</div>
+          <div class="book-actions">
+            <a class="li-btn weixin" href="https://weread.qq.com/web/search/%E6%80%9D%E8%80%83%E5%BF%AB%E4%B8%8E%E6%85%A2%20%E5%8D%A1%E5%B0%BC%E6%9B%BC" target="_blank">📖 微信读书</a>
+            <a class="li-btn snail" href="https://reading.163.com/search?word=%E6%80%9D%E8%80%83%E5%BF%AB%E4%B8%8E%E6%85%A2" target="_blank">📚 蜗牛读书</a>
+            <a class="li-btn ximalaya" href="https://www.ximalaya.com/search/%E6%80%9D%E8%80%83%E5%BF%AB%E4%B8%8E%E6%85%A2" target="_blank">🎧 喜马拉雅</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="block-title">💸 主线二 · 财富启蒙(富爸爸系)</div>
+
+      <div class="book-card">
+        <div class="book-cover" style="background:linear-gradient(135deg,#1d6b2a,#69db7c)">富爸爸<br>穷爸爸</div>
+        <div class="book-info">
+          <div class="t">①《富爸爸穷爸爸》<span class="tag orange">启蒙</span></div>
+          <div class="a">罗伯特·清崎</div>
+          <div class="d">资产 vs 负债的核心思维,破"为钱工作"的认知。</div>
+          <div class="book-actions">
+            <a class="li-btn weixin" href="https://weread.qq.com/web/search/%E5%AF%8C%E7%88%B8%E7%88%B8%E7%A9%B7%E7%88%B8%E7%88%B8%20%E6%B8%85%E5%B4%8E" target="_blank">📖 微信读书</a>
+            <a class="li-btn snail" href="https://reading.163.com/search?word=%E5%AF%8C%E7%88%B8%E7%88%B8%E7%A9%B7%E7%88%B8%E7%88%B8" target="_blank">📚 蜗牛读书</a>
+            <a class="li-btn ximalaya" href="https://www.ximalaya.com/search/%E5%AF%8C%E7%88%B8%E7%88%B8%E7%A9%B7%E7%88%B8%E7%88%B8" target="_blank">🎧 喜马拉雅</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="book-card">
+        <div class="book-cover" style="background:linear-gradient(135deg,#ffd54f,#ff7a45)">小狗<br>钱钱</div>
+        <div class="book-info">
+          <div class="t">②《小狗钱钱》<span class="tag orange">入门</span></div>
+          <div class="a">博多·舍费尔</div>
+          <div class="d">童话体财商书,建立储蓄/梦想基金/复利直觉。</div>
+          <div class="book-actions">
+            <a class="li-btn weixin" href="https://weread.qq.com/web/search/%E5%B0%8F%E7%8B%97%E9%92%B1%E9%92%B1%20%E8%88%8D%E8%B4%B9%E5%B0%94" target="_blank">📖 微信读书</a>
+            <a class="li-btn snail" href="https://reading.163.com/search?word=%E5%B0%8F%E7%8B%97%E9%92%B1%E9%92%B1" target="_blank">📚 蜗牛读书</a>
+            <a class="li-btn ximalaya" href="https://www.ximalaya.com/search/%E5%B0%8F%E7%8B%97%E9%92%B1%E9%92%B1" target="_blank">🎧 喜马拉雅</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="book-card">
+        <div class="book-cover" style="background:linear-gradient(135deg,#c19a6b,#8b5a2b)">巴比伦<br>最富有</div>
+        <div class="book-info">
+          <div class="t">③《巴比伦最富有的人》<span class="tag orange">原则</span></div>
+          <div class="a">乔治·克拉森</div>
+          <div class="d">7 条理财原则,故事体,容易落地执行。</div>
+          <div class="book-actions">
+            <a class="li-btn weixin" href="https://weread.qq.com/web/search/%E5%B7%B4%E6%AF%94%E4%BC%A6%E6%9C%80%E5%AF%8C%E6%9C%89%E7%9A%84%E4%BA%BA" target="_blank">📖 微信读书</a>
+            <a class="li-btn snail" href="https://reading.163.com/search?word=%E5%B7%B4%E6%AF%94%E4%BC%A6%E6%9C%80%E5%AF%8C%E6%9C%89%E7%9A%84%E4%BA%BA" target="_blank">📚 蜗牛读书</a>
+            <a class="li-btn ximalaya" href="https://www.ximalaya.com/search/%E5%B7%B4%E6%AF%94%E4%BC%A6%E6%9C%80%E5%AF%8C%E6%9C%89%E7%9A%84%E4%BA%BA" target="_blank">🎧 喜马拉雅</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="book-card">
+        <div class="book-cover" style="background:linear-gradient(135deg,#3aa0ff,#a06bff)">财务<br>自由之路</div>
+        <div class="book-info">
+          <div class="t">④《财务自由之路》<span class="tag orange">系统</span></div>
+          <div class="a">博多·舍费尔</div>
+          <div class="d">100/50/10 储蓄法 + 收入分桶,从理念到实操。</div>
+          <div class="book-actions">
+            <a class="li-btn weixin" href="https://weread.qq.com/web/search/%E8%B4%A2%E5%8A%A1%E8%87%AA%E7%94%B1%E4%B9%8B%E8%B7%AF%20%E8%88%8D%E8%B4%B9%E5%B0%94" target="_blank">📖 微信读书</a>
+            <a class="li-btn snail" href="https://reading.163.com/search?word=%E8%B4%A2%E5%8A%A1%E8%87%AA%E7%94%B1%E4%B9%8B%E8%B7%AF" target="_blank">📚 蜗牛读书</a>
+            <a class="li-btn ximalaya" href="https://www.ximalaya.com/search/%E8%B4%A2%E5%8A%A1%E8%87%AA%E7%94%B1%E4%B9%8B%E8%B7%AF" target="_blank">🎧 喜马拉雅</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="book-card">
+        <div class="book-cover" style="background:linear-gradient(135deg,#5a4a7a,#2b2440)">邻家的<br>百万富翁</div>
+        <div class="book-info">
+          <div class="t">⑤《邻家的百万富翁》<span class="tag orange">数据</span></div>
+          <div class="a">托马斯·斯坦利</div>
+          <div class="d">真实百万富翁画像,打破"高消费=富有"错觉。</div>
+          <div class="book-actions">
+            <a class="li-btn weixin" href="https://weread.qq.com/web/search/%E9%82%BB%E5%AE%B6%E7%9A%84%E7%99%BE%E4%B8%87%E5%AF%8C%E7%BF%81" target="_blank">📖 微信读书</a>
+            <a class="li-btn snail" href="https://reading.163.com/search?word=%E9%82%BB%E5%AE%B6%E7%9A%84%E7%99%BE%E4%B8%87%E5%AF%8C%E7%BF%81" target="_blank">📚 蜗牛读书</a>
+            <a class="li-btn ximalaya" href="https://www.ximalaya.com/search/%E9%82%BB%E5%AE%B6%E7%9A%84%E7%99%BE%E4%B8%87%E5%AF%8C%E7%BF%81" target="_blank">🎧 喜马拉雅</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="book-card">
+        <div class="book-cover" style="background:linear-gradient(135deg,#1d6b2a,#2b2440)">富爸爸<br>财务自由</div>
+        <div class="book-info">
+          <div class="t">⑥《富爸爸·财务自由之路》<span class="tag orange">进阶</span></div>
+          <div class="a">罗伯特·清崎</div>
+          <div class="d">ESBI 象限,从雇员走向企业主/投资人。</div>
+          <div class="book-actions">
+            <a class="li-btn weixin" href="https://weread.qq.com/web/search/%E5%AF%8C%E7%88%B8%E7%88%B8%E8%B4%A2%E5%8A%A1%E8%87%AA%E7%94%B1%E4%B9%8B%E8%B7%AF" target="_blank">📖 微信读书</a>
+            <a class="li-btn snail" href="https://reading.163.com/search?word=%E5%AF%8C%E7%88%B8%E7%88%B8%E8%B4%A2%E5%8A%A1%E8%87%AA%E7%94%B1%E4%B9%8B%E8%B7%AF" target="_blank">📚 蜗牛读书</a>
+            <a class="li-btn ximalaya" href="https://www.ximalaya.com/search/%E5%AF%8C%E7%88%B8%E7%88%B8%E8%B4%A2%E5%8A%A1%E8%87%AA%E7%94%B1%E4%B9%8B%E8%B7%AF" target="_blank">🎧 喜马拉雅</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 理财存钱 -->
+    <section class="panel" id="panel-money">
+      <div class="card">
+        <div class="card-title">🏦 6 账户分布(本月)</div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:7px;margin-top:8px;font-size:11px">
+          <div style="padding:9px;background:rgba(255,122,69,.12);border-radius:8px"><b>生活 55%</b><br>¥3,300</div>
+          <div style="padding:9px;background:rgba(160,107,255,.12);border-radius:8px"><b>储蓄 10%</b><br>¥600</div>
+          <div style="padding:9px;background:rgba(58,160,255,.12);border-radius:8px"><b>投资 10%</b><br>¥600</div>
+          <div style="padding:9px;background:rgba(105,219,124,.15);border-radius:8px"><b>教育 10%</b><br>¥600</div>
+          <div style="padding:9px;background:rgba(255,213,79,.2);border-radius:8px"><b>玩乐 10%</b><br>¥600</div>
+          <div style="padding:9px;background:rgba(255,90,122,.12);border-radius:8px"><b>梦想 5%</b><br>¥300</div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-title">📈 复利模拟 · 月定投 ¥600</div>
+        <div class="li-desc">年化 8% · 10 年后 ≈ ¥109,800 · 20 年后 ≈ ¥352,000</div>
+        <div class="progress" style="margin-top:10px"><i style="width:31%"></i></div>
+        <div class="li-desc" style="margin-top:6px">第 3 年 / 10 年</div>
+      </div>
+    </section>
+
+    <!-- 信息差(增加渠道+显示内容) -->
+    <section class="panel" id="panel-infogap">
+      <div class="block-title">⚡ 今日信息差机会(点击直达实操)</div>
+
+      <div class="card hoverable">
+        <div class="card-head"><div class="card-title">💼 AI 简历优化 · 闲鱼</div><span class="tag orange">+38%</span></div>
+        <div class="li-desc">客单 ¥39-99 · GPT+模板 10 分钟出稿 · 日接 5 单 · 求职季 9-10 月高峰</div>
+        <div class="step-box">
+          <div class="sb-title">📋 内容怎么做</div>
+          <div class="sb-step">收集 10 套优秀简历模板(美式/日式/简洁风)</div>
+          <div class="sb-step">GPT-4 输入用户原简历+JD,输出优化版+STAR 重写</div>
+          <div class="sb-step">Canva 排版导出 PDF,交付</div>
+        </div>
+        <div class="li-actions" style="margin-top:8px">
+          <a class="li-btn video" href="https://www.goofish.com/search?keyword=AI%E7%AE%80%E5%8E%86" target="_blank">🛒 闲鱼查看竞品</a>
+          <a class="li-btn bilibili" href="https://search.bilibili.com/all?keyword=AI%20%E7%AE%80%E5%8E%86%20%E9%97%B2%E9%B1%BC" target="_blank">📺 操作教程</a>
+        </div>
+      </div>
+
+      <div class="card hoverable">
+        <div class="card-head"><div class="card-title">📕 小红书 · 独居女生清单</div><span class="tag orange">+45%</span></div>
+        <div class="li-desc">低粉高变现 · CPM ¥80-150 · 广告接单稳定 · 适合女性向</div>
+        <div class="step-box">
+          <div class="sb-title">📋 内容怎么做</div>
+          <div class="sb-step">定位:独居女生实用清单(收纳/家电/家居)</div>
+          <div class="sb-step">每周 5 篇图文,封面统一字体+色块</div>
+          <div class="sb-step">1000 粉后开通蒲公英,接家居类广告</div>
+        </div>
+        <div class="li-actions" style="margin-top:8px">
+          <a class="li-btn video" href="https://www.xiaohongshu.com/search_result?keyword=%E7%8B%AC%E5%B1%85%E5%A5%B3%E7%94%9F%E6%B8%85%E5%8D%95" target="_blank">📕 小红书对标账号</a>
+          <a class="li-btn bilibili" href="https://search.bilibili.com/all?keyword=%E5%B0%8F%E7%BA%A2%E4%B9%A6%20%E8%BF%90%E8%90%A5%20%E6%95%99%E5%AD%A6" target="_blank">📺 运营教程</a>
+        </div>
+      </div>
+
+      <div class="card hoverable">
+        <div class="card-head"><div class="card-title">💬 公众号 · 冷知识合集</div><span class="tag orange">+30%</span></div>
+        <div class="li-desc">推荐机制改 · 长尾阅读回升 · 100 粉可开通流量主 · 日更友好</div>
+        <div class="step-box">
+          <div class="sb-title">📋 内容怎么做</div>
+          <div class="sb-step">定位:垂直冷知识(历史/科学/生活/地理)</div>
+          <div class="sb-step">每天 1 篇 1500 字,标题用"为什么/你不知道的"</div>
+          <div class="sb-step">500 粉后流量主 + 接广点通广告</div>
+        </div>
+        <div class="li-actions" style="margin-top:8px">
+          <a class="li-btn video" href="https://mp.weixin.qq.com/" target="_blank">💬 公众号后台</a>
+          <a class="li-btn bilibili" href="https://search.bilibili.com/all?keyword=%E5%85%AC%E4%BC%97%E5%8F%B7%20%E6%B5%81%E9%87%8F%E4%B8%BB%20%E6%95%99%E5%AD%A6" target="_blank">📺 流量主教程</a>
+        </div>
+      </div>
+
+      <div class="card hoverable">
+        <div class="card-head"><div class="card-title">🎨 头像定制 · 闲鱼/小红书</div><span class="tag orange">+60%</span></div>
+        <div class="li-desc">客单 ¥19-59 · AI 生成+精修 · 喜头像/IP 风格 · 接单稳定</div>
+        <div class="step-box">
+          <div class="sb-title">📋 内容怎么做</div>
+          <div class="sb-step">用 SD/Midjourney 训练 5 种风格模型</div>
+          <div class="sb-step">用户上传照片,选风格,5 分钟出 4 张</div>
+          <div class="sb-step">PS 精修五官,交付高清大图</div>
+        </div>
+        <div class="li-actions" style="margin-top:8px">
+          <a class="li-btn video" href="https://www.goofish.com/search?keyword=%E5%A4%B4%E5%83%8F%E5%AE%9A%E5%88%B6" target="_blank">🛒 闲鱼对标</a>
+          <a class="li-btn bilibili" href="https://search.bilibili.com/all?keyword=AI%20%E5%A4%B4%E5%83%8F%20%E9%97%B2%E9%B1%BC" target="_blank">📺 头像定制教程</a>
+        </div>
+      </div>
+
+      <div class="card hoverable">
+        <div class="card-head"><div class="card-title">🎙 播客剪辑外包 · 小宇宙</div><span class="tag orange">+50%</span></div>
+        <div class="li-desc">单期 ¥200-500 · 1 小时音频剪辑 2 小时完工 · 长尾需求稳</div>
+        <div class="step-box">
+          <div class="sb-title">📋 内容怎么做</div>
+          <div class="sb-step">学 Audition/Descript 2 周</div>
+          <div class="sb-step">小宇宙/即刻发承接帖,先免费剪 1 期试工</div>
+          <div class="sb-step">稳定后接 3-5 个长期主播</div>
+        </div>
+        <div class="li-actions" style="margin-top:8px">
+          <a class="li-btn video" href="https://www.xiaoyuzhoufm.com/" target="_blank">🎙 小宇宙平台</a>
+          <a class="li-btn bilibili" href="https://search.bilibili.com/all?keyword=%E6%92%AD%E5%AE%A2%E5%89%AA%E8%BE%91%20%E6%95%99%E5%AD%A6" target="_blank">📺 剪辑教程</a>
+        </div>
+      </div>
+
+      <div class="card hoverable">
+        <div class="card-head"><div class="card-title">🖼 短视频二创 · 抖音中视频</div><span class="tag orange">+40%</span></div>
+        <div class="li-desc">中视频计划 ¥10-30/万次 · 影视/纪录片解说 · 单条月入 ¥500+</div>
+        <div class="step-box">
+          <div class="sb-title">📋 内容怎么做</div>
+          <div class="sb-step">找无版权纪录片素材(Pixabay/混剪)</div>
+          <div class="sb-step">GPT 写 5 分钟解说文案</div>
+          <div class="sb-step">剪映配音+字幕,发布抖音+B站</div>
+        </div>
+        <div class="li-actions" style="margin-top:8px">
+          <a class="li-btn douyin" href="https://www.douyin.com/" target="_blank">📲 抖音发布</a>
+          <a class="li-btn bilibili" href="https://search.bilibili.com/all?keyword=%E4%BA%8C%E5%88%9B%20%E8%A7%A3%E8%AF%B4%20%E6%95%99%E5%AD%A6" target="_blank">📺 二创教程</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- 二道贩子(显示怎么拿货+怎么卖+推荐) -->
+    <section class="panel" id="panel-reseller">
+      <div class="refresh-bar">
+        <span><span class="live-dot"></span>实时刷新 · 上次 <span id="lastUpdate">刚刚</span></span>
+        <button class="btn btn-ghost" onclick="toast('已刷新渠道清单')">刷新</button>
+      </div>
+
+      <div class="block-title">📡 渠道清单(点击直达平台)</div>
+      <a class="channel" href="https://www.goofish.com/" target="_blank">
+        <div class="avatar">闲</div><div class="info"><b>闲鱼 · 闲置数码</b><span>★★★★★ · 门槛低</span></div><div class="profit">+38%</div>
+      </a>
+      <a class="channel" href="https://www.zhuanzhuan.com/" target="_blank">
+        <div class="avatar">转</div><div class="info"><b>转转 · 二手书</b><span>★★★ · ISBN 估价</span></div><div class="profit">+22%</div>
+      </a>
+      <a class="channel" href="https://mobile.yangkeduo.com/" target="_blank">
+        <div class="avatar">多</div><div class="info"><b>拼多多 · 9.9 包邮</b><span>★★★★★ · 走量</span></div><div class="profit">+15%</div>
+      </a>
+      <a class="channel" href="https://www.douyin.com/" target="_blank">
+        <div class="avatar">抖</div><div class="info"><b>抖音小店 · 服饰</b><span>★★★★ · 门槛高</span></div><div class="profit">+50%</div>
+      </a>
+      <a class="channel" href="https://www.xiaohongshu.com/" target="_blank">
+        <div class="avatar">红</div><div class="info"><b>小红书 · 笔记带货</b><span>★★★★ · 1000 粉</span></div><div class="profit">+45%</div>
+      </a>
+      <a class="channel" href="https://www.dewu.com/" target="_blank">
+        <div class="avatar">得</div><div class="info"><b>得物 · 球鞋潮玩</b><span>★★★★ · 门槛高</span></div><div class="profit">+60%</div>
+      </a>
+      <a class="channel" href="https://www.kongfz.com/" target="_blank">
+        <div class="avatar">孔</div><div class="info"><b>孔夫子 · 古籍</b><span>★★ · 门槛中</span></div><div class="profit">+120%</div>
+      </a>
+      <a class="channel" href="https://www.1688.com/" target="_blank">
+        <div class="avatar">1688</div><div class="info"><b>1688 · 一手货源</b><span>★★★★★ · 批发价</span></div><div class="profit">出厂价</div>
+      </a>
+
+      <div class="block-title">📦 今日热货(含拿货步骤 + 推荐理由)</div>
+
+      <!-- 货 1 -->
+      <div class="card">
+        <div class="card-head"><div class="card-title">📱 闲置 iPhone 12/13 · 国行 128G</div><span class="tag red">热</span></div>
+        <div class="li-desc">收 ¥1,800-2,400 · 卖 ¥2,500-3,200 · 利润 ¥400-800/台</div>
+        <div class="step-box">
+          <div class="sb-title">🛒 怎么拿货</div>
+          <div class="sb-step">闲鱼/转转搜"iPhone 12 128 国行",筛选同城面交</div>
+          <div class="sb-step">爱思助手验机:电池循环<300、无 ID 锁、无维修史</div>
+          <div class="sb-step">压价技巧:报轻微磕碰、电池健康<85%,砍 ¥150-300</div>
+        </div>
+        <div class="step-box sell">
+          <div class="sb-title">💰 怎么卖</div>
+          <div class="sb-step">擦机+贴膜+送壳,拍照打光,封面用"95新国行 128G"</div>
+          <div class="sb-step">挂闲鱼,标题加"验机报告+包退",溢价 ¥300-500</div>
+          <div class="sb-step">同城面交优先,避免纠纷;外省走顺丰保价</div>
+        </div>
+        <div class="rec-box">
+          <div class="rb-title">✅ 推荐理由</div>
+          <div class="rb-text">需求大、流转快、利润稳;9-10 月开学+求职季是旺季;验机熟练后单台净赚 ¥500+,适合手机党入门。</div>
+        </div>
+      </div>
+
+      <!-- 货 2 -->
+      <div class="card">
+        <div class="card-head"><div class="card-title">📚 绝版二手书 · 商业/心理</div><span class="tag">货</span></div>
+        <div class="li-desc">收 ¥5-15 · 卖 ¥30-80 · 利润 ¥25-65/本</div>
+        <div class="step-box">
+          <div class="sb-title">🛒 怎么拿货</div>
+          <div class="sb-step">多抓鱼"收书"功能上门收,3 折收</div>
+          <div class="sb-step">小区图书捐赠箱、旧书摊、孔网滞销书</div>
+          <div class="sb-step">重点收:绝版商业书/心理学经典/老版金庸</div>
+        </div>
+        <div class="step-box sell">
+          <div class="sb-title">💰 怎么卖</div>
+          <div class="sb-step">孔夫子挂单,绝版书溢价 3-5 倍</div>
+          <div class="sb-step">闲鱼打包成"书单套装",客单 ¥80-150</div>
+          <div class="sb-step">小红书做"绝版书推荐"账号引流私域复购</div>
+        </div>
+        <div class="rec-box">
+          <div class="rb-title">✅ 推荐理由</div>
+          <div class="rb-text">囤货成本极低、不怕压货、绝版品随时间升值;适合爱书人+内容运营者结合做,长尾收益稳。</div>
+        </div>
+      </div>
+
+      <!-- 货 3 -->
+      <div class="card">
+        <div class="card-head"><div class="card-title">🎁 工厂尾货 · 日用盲盒</div><span class="tag">货</span></div>
+        <div class="li-desc">收 ¥3-5/件 · 卖 ¥9.9 包邮 · 利润 ¥2-4/件</div>
+        <div class="step-box">
+          <div class="sb-title">🛒 怎么拿货</div>
+          <div class="sb-step">1688 搜"尾货清仓",找义乌/汕头工厂</div>
+          <div class="sb-step">选"混批 100 件起",均价 ¥3-5,品类随机</div>
+          <div class="sb-step">先小批 100 件测品,利润跑通再加量</div>
+        </div>
+        <div class="step-box sell">
+          <div class="sb-title">💰 怎么卖</div>
+          <div class="sb-step">拼多多开"9.9 包邮"店,主图打"清仓捡漏"</div>
+          <div class="sb-step">抖音直播开盲盒,趣味性高转化好</div>
+          <div class="sb-step">退货率 8%,定价留 30% 利润缓冲</div>
+        </div>
+        <div class="rec-box">
+          <div class="rb-title">✅ 推荐理由</div>
+          <div class="rb-text">走量大、操作简单、不需要选品能力;拼多多流量倾斜 9.9 包邮,日均 50 单可稳赚 ¥150-200。</div>
+        </div>
+      </div>
+
+      <!-- 货 4 -->
+      <div class="card">
+        <div class="card-head"><div class="card-title">🧣 小众设计师款 · 围巾/帽子</div><span class="tag blue">小众</span></div>
+        <div class="li-desc">收 ¥15 · 卖 ¥68-128 · 利润 ¥50-110</div>
+        <div class="step-box">
+          <div class="sb-title">🛒 怎么拿货</div>
+          <div class="sb-step">1688 搜"设计师款围巾",找杭州/桐乡工厂</div>
+          <div class="sb-step">挑独立设计师风格,避开淘宝爆款</div>
+          <div class="sb-step">拿样拍照看品相,确认后批量 50 条起</div>
+        </div>
+        <div class="step-box sell">
+          <div class="sb-title">💰 怎么卖</div>
+          <div class="sb-step">小红书做"小众围巾种草"账号,图文+视频</div>
+          <div class="sb-step">开通小红书店铺或引流微信私域</div>
+          <div class="sb-step">客单价高,日销 5 条即赚 ¥250-550</div>
+        </div>
+        <div class="rec-box">
+          <div class="rb-title">✅ 推荐理由</div>
+          <div class="rb-text">利润空间最大、适合做个人 IP、可叠加内容运营;起量慢但单件利润高,适合小红书有审美的人。</div>
+        </div>
+      </div>
+
+      <!-- 货 5 -->
+      <div class="card">
+        <div class="card-head"><div class="card-title">👟 球鞋 · 限量款</div><span class="tag red">高利</span></div>
+        <div class="li-desc">收 ¥600-1200 · 卖 ¥1500-3000 · 利润 ¥300-1500</div>
+        <div class="step-box">
+          <div class="sb-title">🛒 怎么拿货</div>
+          <div class="sb-step">Nice/得物关注价格异动,低价扫货</div>
+          <div class="sb-step">线下折扣店(奥特莱斯)淘断码</div>
+          <div class="sb-step">Nike SNKRS 抽签App 中签即赚</div>
+        </div>
+        <div class="step-box sell">
+          <div class="sb-title">💰 怎么卖</div>
+          <div class="sb-step">得物挂卖,平台抽佣 5-10%</div>
+          <div class="sb-step">闲鱼私域价更高,验货后发货</div>
+          <div class="sb-step">保留原盒+小票,溢价 ¥100-300</div>
+        </div>
+        <div class="rec-box">
+          <div class="rb-title">✅ 推荐理由</div>
+          <div class="rb-text">单笔利润最高、流通快;但需要懂行情、资金占用大;适合有球鞋圈子资源的人。</div>
+        </div>
+      </div>
+
+      <div class="card" style="background:rgba(255,77,79,.08);border-color:rgba(255,77,79,.2)">
+        <div class="card-title">⚠️ 风险提示</div>
+        <div class="li-desc">• 数码类务必验机:ID 锁/维修史/电池循环</div>
+        <div class="li-desc">• 二手书看品相分级,盗版直接退货</div>
+        <div class="li-desc">• 尾货盲盒注意退款规则,先小批量测</div>
+        <div class="li-desc">• 账号风控:一机一号,避免多账号</div>
+        <div class="li-desc">• 球鞋认准原盒+小票,假货直接封号</div>
+      </div>
+    </section>
+
+    <!-- 修心修行 -->
+    <section class="panel" id="panel-mind">
+      <div class="card">
+        <div class="card-title">🌙 今晚冥想引导 · 10 分钟</div>
+        <div class="li-desc" style="margin-top:6px">主题:放下今天的焦虑 · 4-7-8 呼吸法 · 适合睡前</div>
+        <div class="move-video">
+          <iframe src="https://player.bilibili.com/player.html?bvid=BV1GJ411x7X3&page=1&autoplay=0&high_quality=1" allowfullscreen scrolling="no"></iframe>
+          <div class="video-actions">
+            <a class="li-btn bilibili" href="https://search.bilibili.com/all?keyword=%E5%86%A5%E6%83%B3%E5%BC%95%E5%AF%BC%2010%E5%88%86%E9%92%9F" target="_blank">📺 冥想引导</a>
+          </div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-title">📖 正在读:《被讨厌的勇气》</div>
+        <div class="li-desc">阿德勒心理学对话体 · 第 3 夜 · "课题分离"</div>
+        <div class="progress"><i style="width:48%"></i></div>
+        <div class="book-actions" style="margin-top:8px">
+          <a class="li-btn weixin" href="https://weread.qq.com/web/search/%E8%A2%AB%E8%AE%A8%E5%8E%8C%E7%9A%84%E5%8B%87%E6%B0%94" target="_blank">📖 微信读书</a>
+          <a class="li-btn snail" href="https://reading.163.com/search?word=%E8%A2%AB%E8%AE%A8%E5%8E%8C%E7%9A%84%E5%8B%87%E6%B0%94" target="_blank">📚 蜗牛读书</a>
+          <a class="li-btn ximalaya" href="https://www.ximalaya.com/search/%E8%A2%AB%E8%AE%A8%E5%8E%8C%E7%9A%84%E5%8B%87%E6%B0%94" target="_blank">🎧 喜马拉雅</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- 博客精选 -->
+    <section class="panel" id="panel-blog">
+      <a class="card hoverable" href="https://search.bilibili.com/all?keyword=%E8%8B%B1%E8%AF%AD%E5%8F%A3%E8%AF%AD%20100%E5%A4%A9" target="_blank" style="display:block;text-decoration:none;color:inherit">
+        <div class="card-head"><div class="card-title">① 100 天英语口语从哑巴到流利</div></div>
+        <div class="li-desc">个人博客 · 12 分钟 · 关联:英语口语板块</div>
+        <div class="li-desc" style="color:var(--accent);margin-top:4px">▶ 点击阅读</div>
+      </a>
+      <a class="card hoverable" href="https://search.bilibili.com/all?keyword=%E5%93%91%E9%93%83%20%E4%B8%89%E5%88%86%E5%8C%96%20%E8%AE%AD%E7%BB%83" target="_blank" style="display:block;text-decoration:none;color:inherit">
+        <div class="card-head"><div class="card-title">② 居家哑铃 3 年 · 三分化系统</div></div>
+        <div class="li-desc">即刻 · 8 分钟 · 关联:每日塑形</div>
+        <div class="li-desc" style="color:var(--accent);margin-top:4px">▶ 点击阅读</div>
+      </a>
+      <a class="card hoverable" href="https://search.bilibili.com/all?keyword=%E4%BA%8C%E9%81%93%E8%B4%AE%E5%AD%90%20%E6%93%8D%E7%9B%98" target="_blank" style="display:block;text-decoration:none;color:inherit">
+        <div class="card-head"><div class="card-title">③ 二道贩子月入 2 万复盘</div></div>
+        <div class="li-desc">知识星球 · 15 分钟 · 关联:二道贩子情报站</div>
+        <div class="li-desc" style="color:var(--accent);margin-top:4px">▶ 点击阅读</div>
+      </a>
+    </section>
+
+  </div>
+
   <div class="tab-bar">
     <div class="tb active" onclick="switchTo('inspiration')"><div class="ic">🏠</div><div>首页</div></div>
     <div class="tb" onclick="toast('朋友动态')"><div class="ic">👥</div><div>朋友</div></div>
@@ -154,22 +1019,100 @@
     <div class="tb" onclick="toast('我的')"><div class="ic">👤</div><div>我</div></div>
   </div>
 </div>
+
 <div class="toast" id="toast"></div>
+
 <script>
-const tabScroll=document.getElementById('tabScroll');
-const panels=document.querySelectorAll('.panel');
-function switchTo(p){document.querySelectorAll('.tab').forEach(t=>t.classList.toggle('active',t.dataset.panel===p));panels.forEach(s=>s.classList.toggle('active',s.id==='panel-'+p));const act=document.querySelector('.tab.active');if(act)act.scrollIntoView({behavior:'smooth',block:'nearest',inline:'center'})}
-tabScroll.addEventListener('click',e=>{const t=e.target.closest('.tab');if(!t)return;switchTo(t.dataset.panel)});
-function tick(){const d=new Date();document.getElementById('clock').textContent=String(d.getHours()).padStart(2,'0')+':'+String(d.getMinutes()).padStart(2,'0')}
-tick();setInterval(tick,1000*30);
-let checked=false;
-function checkin(){if(checked){toast('今天已打卡');return;}const btn=document.getElementById('checkinBtn');btn.classList.add('done');btn.textContent='✓ 今日已打卡';checked=true;toast('打卡成功!')}
-let toastTimer;
-function toast(msg){const t=document.getElementById('toast');t.textContent=msg;t.classList.add('show');clearTimeout(toastTimer);toastTimer=setTimeout(()=>t.classList.remove('show'),2000)}
-document.querySelectorAll('.tab-bar .tb').forEach(tb=>{tb.addEventListener('click',()=>{document.querySelectorAll('.tab-bar .tb').forEach(t=>t.classList.remove('active'));tb.classList.add('active')})});
-if('serviceWorker' in navigator){window.addEventListener('load',()=>{navigator.serviceWorker.register('sw.js').then(()=>console.log('SW ok')).catch(e=>console.warn('SW fail',e))})}
+  const tabScroll=document.getElementById('tabScroll');
+  const panels=document.querySelectorAll('.panel');
+  function switchTo(p){
+    document.querySelectorAll('.tab').forEach(t=>t.classList.toggle('active',t.dataset.panel===p));
+    panels.forEach(s=>s.classList.toggle('active',s.id==='panel-'+p));
+    const act=document.querySelector('.tab.active');
+    if(act)act.scrollIntoView({behavior:'smooth',block:'nearest',inline:'center'});
+  }
+  tabScroll.addEventListener('click',e=>{const t=e.target.closest('.tab');if(!t)return;switchTo(t.dataset.panel)});
+
+  function tick(){const d=new Date();document.getElementById('clock').textContent=String(d.getHours()).padStart(2,'0')+':'+String(d.getMinutes()).padStart(2,'0')}
+  tick();setInterval(tick,1000*30);
+
+  const ideaInput=document.getElementById('ideaInput');
+  if(ideaInput)ideaInput.addEventListener('input',()=>{document.getElementById('charCount').textContent=ideaInput.value.length});
+  function saveIdea(){
+    const v=ideaInput.value.trim();
+    if(!v){toast('想法不能为空');return;}
+    const wall=document.getElementById('ideaWall');
+    const div=document.createElement('div');
+    div.className='list-item';
+    const d=new Date();
+    div.innerHTML=`<div class="li-num">${wall.children.length+1}</div><div class="li-body"><div class="li-title">${v.replace(/</g,'&lt;')}</div><div class="li-desc">来源:个人想法 · ${d.getMonth()+1}-${d.getDate()} ${String(d.getHours()).padStart(2,'0')}:${String(d.getMinutes()).padStart(2,'0')}</div></div>`;
+    wall.insertBefore(div,wall.firstChild);
+    ideaInput.value='';document.getElementById('charCount').textContent='0';
+    toast('想法已发布到墙');
+  }
+
+  const calGrid=document.getElementById('calGrid');
+  if(calGrid){
+    const today=new Date();
+    const y=today.getFullYear(),m=today.getMonth();
+    const first=new Date(y,m,1).getDay();
+    const offset=(first+6)%7;
+    const days=new Date(y,m+1,0).getDate();
+    const doneSet=new Set([1,2,3,4,5,6,8,9,10,11,12,13,15,16,17,18,19,20,22,23,24,25,26,27]);
+    for(let i=0;i<offset;i++){const c=document.createElement('div');c.className='cal-cell empty';calGrid.appendChild(c)}
+    for(let d=1;d<=days;d++){
+      const c=document.createElement('div');c.className='cal-cell';
+      if(doneSet.has(d))c.classList.add('done');
+      if(d===today.getDate())c.classList.add('today');
+      c.textContent=d;calGrid.appendChild(c);
+    }
+  }
+  let checked=false;
+  function checkin(){
+    if(checked){toast('今天已打卡,明天见!');return;}
+    const btn=document.getElementById('checkinBtn');
+    btn.classList.add('done');btn.textContent='✓ 今日已打卡 (腿日完成)';checked=true;
+    toast('打卡成功!连续 13 天 🔥');
+  }
+
+  setInterval(()=>{
+    const el=document.getElementById('lastUpdate');if(!el)return;
+    const t=el.textContent;
+    if(t==='刚刚')el.textContent='30秒前';
+    else if(t==='30秒前')el.textContent='1分钟前';
+    else if(t==='1分钟前')el.textContent='2分钟前';
+  },30000);
+
+  let toastTimer;
+  function toast(msg){const t=document.getElementById('toast');t.textContent=msg;t.classList.add('show');clearTimeout(toastTimer);toastTimer=setTimeout(()=>t.classList.remove('show'),2000)}
+
+  document.querySelectorAll('.tab-bar .tb').forEach(tb=>{tb.addEventListener('click',()=>{document.querySelectorAll('.tab-bar .tb').forEach(t=>t.classList.remove('active'));tb.classList.add('active')})});
+</script>
+<script>
+// 注册 Service Worker 让 APP 离线可用 + 可"安装到主屏幕"
+if('serviceWorker' in navigator){
+  window.addEventListener('load',()=>{
+    navigator.serviceWorker.register('sw.js').then(reg=>{
+      console.log('[PWA] Service Worker 已注册,可添加到主屏幕');
+    }).catch(err=>console.warn('[PWA] SW 注册失败:',err));
+  });
+}
+// PWA 安装提示:捕获 beforeinstallprompt,主动显示"安装"按钮
 let deferredPrompt;
-window.addEventListener('beforeinstallprompt',e=>{e.preventDefault();deferredPrompt=e;const btn=document.createElement('div');btn.textContent='📲 安装到主屏幕';btn.style.cssText='position:fixed;bottom:80px;left:50%;transform:translateX(-50%);background:linear-gradient(135deg,#ff7a45,#a06bff);color:#fff;padding:10px 22px;border-radius:24px;font-size:13px;font-weight:600;z-index:9999;box-shadow:0 6px 20px rgba(255,122,69,.4);cursor:pointer';btn.onclick=async()=>{btn.remove();deferredPrompt.prompt();await deferredPrompt.userChoice;deferredPrompt=null};document.body.appendChild(btn)});
+window.addEventListener('beforeinstallprompt',(e)=>{
+  e.preventDefault();
+  deferredPrompt=e;
+  const btn=document.createElement('div');
+  btn.textContent='📲 安装到主屏幕';
+  btn.style.cssText='position:fixed;bottom:80px;left:50%;transform:translateX(-50%);background:linear-gradient(135deg,#ff7a45,#a06bff);color:#fff;padding:10px 22px;border-radius:24px;font-size:13px;font-weight:600;z-index:9999;box-shadow:0 6px 20px rgba(255,122,69,.4);cursor:pointer';
+  btn.onclick=async()=>{
+    btn.remove();
+    deferredPrompt.prompt();
+    await deferredPrompt.userChoice;
+    deferredPrompt=null;
+  };
+  document.body.appendChild(btn);
+});
 </script>
 </body>
 </html>
